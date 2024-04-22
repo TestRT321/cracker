@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Website</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+        }
+
+        .navbar {
+            background-color: #E0B0FF; /* Bright purple navbar */
+            color: #fff; /* White text */
+            padding: 7px 20px; /* Padding on top and bottom, and on each side of the rectangle */
+            border-radius: 20px; /* Rounded corners */
+            position: fixed;
+            top: -60px; /* Move navbar off the screen initially */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px; /* Width of the navbar */
+            display: flex;
+            justify-content: space-between; /* Distribute space between logo and buttons */
+            align-items: center; /* Center vertically */
+            z-index: 999; /* Ensure it's above other content */
+            transition: top 0.5s ease; /* Animation duration and easing */
+            border: 0px solid black; /* Add black border */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add slight 3D effect */
+            height: 49px; /* Adjusted navbar height */
+        }
+
+        /* Style for the logo */
+        .logo {
+            transform: translateY(3%) translateY(3%);
+        }
+
+        .logo img {
+            width: 60px; /* Adjust width of the logo */
+            height: auto; /* Maintain aspect ratio */
+            transform: scale(0.9); /* Scale down the logo by 30% */
+        }
+
+        /* Style for the buttons */
+        .button {
+            background-color: #9370DB; /* Light purple */
+            color: #fff; /* White text */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold; /* Make text bold */
+            transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Transition for button hover effects */
+            float: left; /* Make button float left */
+            margin-left: -3%; /* Move button 5% left */
+        }
+
+        /* Button hover effects */
+        .button:hover {
+            background-color: #FF69B4; /* Pink background on hover */
+            box-shadow: 0 0 20px #FF69B4; /* Pink glow on hover */
+            transform: scale(1.2); /* Scale up on hover */
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 7px 15px; /* Adjust padding for smaller screens */
+                border-radius: 15px; /* Adjust rounded corners for smaller screens */
+                width: 100%; /* Full width on smaller screens */
+            }
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bg-img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: url('https://pasteboard.co/LOJggnAsX5QO.png') center center no-repeat;
+            background-size: cover;
+        }
+
+        .bg-img:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(to bottom right, purple, #808080); /* Purple and grey gradient */
+            opacity: .6; 
+        }
+
+        .title {
+            font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+            font-size: 200px; /* Reduced font size */
+            padding: 50px 20px; /* Reduced padding */
+            text-align: center;
+            text-transform: uppercase;
+            text-rendering: optimizeLegibility;
+            color: #202020; /* Color */
+            background-color: #2d2d2d; /* Black background color */
+            letter-spacing: .1em;
+            text-shadow: 
+                -1px -1px 1px #111, 
+                2px 2px 1px #363636; /* Inset shadow */
+        }
+
+        /* New block below title */
+        .block {
+            height: 1000px; /* 4 times larger */
+            background-color: #2d2d2d; /* Same background color as title */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Image inside the block */
+        .block img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* Floating text */
+        .floating-text {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Arial, sans-serif;
+            font-size: 600%;
+            font-weight: bold;
+            color: #800080; /* Purple color */
+            text-shadow: 0 0 10px #FF69B4; /* Pink glow */
+            animation: pulse 2s infinite alternate;
+        }
+
+        /* Subtitle floating text */
+        .subtitle-floating-text {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Arial, sans-serif;
+            font-size: 400%;
+            font-weight: bold;
+            color: #9370DB; /* Light purple */
+        }
+
+        @keyframes pulse {
+            0% {
+                color: #FF69B4; /* Pink */
+                text-shadow: 0 0 10px #800080; /* Purple glow */
+            }
+            100% {
+                color: #800080; /* Purple */
+                text-shadow: 0 0 10px #FF69B4; /* Pink glow */
+            }
+        }
+
+        /* Popup container */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            z-index: 9999; /* Sit on top */
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 275px;
+            height: 300px;
+            background-color: #800080; /* Purple color */
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add shadow */
+            animation: scaleUp 0.5s ease forwards;
+        }
+
+        /* Popup content */
+        .popup-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        /* Close button */
+        .close {
+            color: #fff;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Input fields */
+        input[type="email"],
+        input[type="password"] {
+            width: 91%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* Sign up button */
+        .signup-button {
+            background-color: #9370DB; /* Light purple */
+            color: #fff; /* White text */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold; /* Make text bold */
+            transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Transition for button hover effects */
+        }
+
+        /* Button hover effects */
+        .signup-button:hover {
+            background-color: #FF69B4; /* Pink background on hover */
+            box-shadow: 0 0 20px #FF69B4; /* Pink glow on hover */
+            transform: scale(1.2); /* Scale up on hover */
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-img"></div>
+
+    <!-- Navbar/Header -->
+    <div class="navbar" id="navbar">
+        <!-- Logo -->
+        <div class="logo" style="transform: translateY(5%) translateY(2%)">
+            <img src="https://gcdnb.pbrd.co/images/96yjXFvNv2e1.png?o=1" alt="Logo">
+        </div>
+        <!-- Buttons -->
+        {% if logged_in %}
+            <button class="button" onclick="showDashboard()">Dashboard</button>
+            <button class="button" onclick="logout()">Logout</button>
+        {% else %}
+            <button class="button" onclick="showLoginPopup()" style="margin-left: auto; margin-right: 5%;">Login</button>
+            <button class="button" onclick="showRegisterPopup()">Register</button>
+        {% endif %}
+    </div>
+
+    <!-- Title -->
+    <div class="title">Tiktok Shop</div>
+
+    <!-- New block below title -->
+    <div class="block">
+        <img src="https://gcdnb.pbrd.co/images/TeEwqdItckql.png?o=1" alt="Image">
+        <img src="https://gcdnb.pbrd.co/images/kUmbKOXh1uVQ.png?o=1" alt="Image">
+    </div>
+
+    <!-- Floating text -->
+    <div class="floating-text">AutoTok</div>
+    
+    <!-- Subtitle floating text -->
+    <div class="subtitle-floating-text" id="subtitle-floating-text"></div>
+
+    <!-- Popup for Login -->
+    <div id="login-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeLoginPopup()">&times;</span>
+            <h2 style="color: #fff;">Login</h2>
+            <form action="/login" method="POST">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required><br>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required><br>
+                <button type="submit" class="signup-button">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Popup for Register -->
+    <div id="register-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeRegisterPopup()">&times;</span>
+            <h2 style="color: #fff;">Register</h2>
+            <form action="/register" method="POST">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required><br>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required><br>
+                <button type="submit" class="signup-button">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to animate the navbar/header into the position 30 pixels down
+        window.addEventListener('load', function() {
+            // Timeout added to delay the animation for demonstration
+            setTimeout(function() {
+                document.getElementById('navbar').style.top = '30px';
+            }, 300);
+        });
+
+        // Function to show the login popup
+        function showLoginPopup() {
+            document.getElementById("login-popup").style.display = "block";
+        }
+
+        // Function to close the login popup
+        function closeLoginPopup() {
+            document.getElementById("login-popup").style.display = "none";
+        }
+
+        // Function to show the register popup
+        function showRegisterPopup() {
+            document.getElementById("register-popup").style.display = "block";
+        }
+
+        // Function to close the register popup
+        function closeRegisterPopup() {
+            document.getElementById("register-popup").style.display = "none";
+        }
+
+        // Function to show the dashboard
+        function showDashboard() {
+            // Add your logic to show the dashboard here
+            window.location.href = "index.html"; // Redirect to dashboard page
+        }
+
+        // Function to handle logout
+        function logout() {
+            // Add your logout logic here
+            location.reload(); // For now, just reload the page
+        }
+
+        // Typing effect for subtitle
+        const subtitles = ["Automate your Workflow", "Automate your Business", "Automate your Income"];
+        let currentSubtitleIndex = 0;
+        let currentSubtitle = subtitles[currentSubtitleIndex];
+        let subtitleContainer = document.getElementById("subtitle-floating-text");
+        let typingSpeed = 100; // Adjust typing speed in milliseconds
+
+        function typeSubtitle() {
+            if (currentSubtitle.length > 0) {
+                subtitleContainer.textContent += currentSubtitle.charAt(0);
+                currentSubtitle = currentSubtitle.substring(1);
+                setTimeout(typeSubtitle, typingSpeed);
+            } else {
+                setTimeout(() => {
+                    subtitleContainer.textContent = "";
+                    currentSubtitleIndex = (currentSubtitleIndex + 1) % subtitles.length;
+                    currentSubtitle = subtitles[currentSubtitleIndex];
+                    typeSubtitle();
+                }, 2000); // Wait 2 seconds before displaying next subtitle
+            }
+        }
+
+        // Start typing effect on page load
+        window.onload = typeSubtitle();
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <div class="bg-img"></div>
+    <div class="menu" id="menu">
+        <button onclick="toggleMenu()">&#10148;</button> <!-- Unicode character for right arrow -->
+        <div class="menu-content" id="menuContent">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/statistics">Statistics</a>
+            <a href="/settings">Settings</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="title bounce">Your Dashboard</div>
+    <div class="container">
+        <div class="rectangle"></div>
+        <div class="rectangle">
+            <img src="https://cdn.pixabay.com/photo/2022/02/09/08/24/tiktok-7002866_1280.png" alt="TikTok" class="tiktok-image">
+<button class="connect-button" onclick="openTikTokPopup()">Connect TikTok</button>
+        </div>
+        <div class="rectangle"></div>
+    </div>
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Connection Authorization</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='apiconnectconfirm.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/TikTok_logo.svg/2560px-TikTok_logo.svg.png" alt="TikTok Logo" class="navbar-logo">
+        </div>
+        <div class="navbar-right">
+            <a href="https://www.tiktok.com/feedback/?lang=en" class="navbar-link">Feedback and Help</a>
+        </div>
+    </nav>
+    <div class="content-container">
+        <img src="https://cdn.pixabay.com/photo/2022/02/09/08/24/tiktok-7002866_1280.png" alt="TikTok Logo" class="logo">
+        <h1>Authorize API Access</h1>
+        <h3>This will give autotok.com access to:</h3>
+        <ul>
+            <li>View your analytics</li>
+            <li>Post on your account</li>
+            <li>View your notifications</li>
+        </ul>
+        <button onclick="authorize()" class="confirm-button">Confirm</button>
+    </div>
+</body>
+</html>

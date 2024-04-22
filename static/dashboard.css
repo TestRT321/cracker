@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden; /* Prevent vertical scrolling */
+}
+
+.bg-img {
+    position: fixed;
+    background: linear-gradient(to right, #FF69B4, #8A2BE2); /* Pink to purple gradient */
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px; /* Initial width of the collapsed menu */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    transition: width 0.5s; /* Smooth transition for expanding and collapsing */
+    z-index: 2;
+}
+
+.menu button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    margin-top: 10px;
+    cursor: pointer;
+    transform: rotate(0deg);
+    transition: transform 0.5s;
+}
+
+.menu-content {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Full width of the expanded menu */
+}
+
+.menu-content a, .menu-content form button {
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: color 0.3s; /* Transition for glow effect */
+}
+
+.menu-content a:hover, .menu-content form button:hover {
+    color: #E0E0E0; /* Glow effect on hover */
+    text-shadow: 0 0 8px #FFFFFF;
+}
+
+.title {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 3em;
+    font-weight: bold; /* Make the dashboard title bold */
+    text-align: center;
+    opacity: 1; /* Make title fully visible */
+    text-shadow: 0 0 10px pink; /* Pink glow effect */
+}
+
+.container {
+    position: fixed;
+    top: 50%; /* Adjusted vertical positioning to lower the rectangles */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-around; /* Ensures even spacing between elements */
+    width: 80%; /* Container width to ensure it doesn't stretch too wide */
+    max-width: 960px; /* Maximum width to avoid too wide a stretch on larger screens */
+}
+
+.rectangle {
+    width: 280px; /* Adjusted width for each rectangle */
+    height: 320px; /* Height adjusted to contain the elements properly */
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for style */
+    border: 2px solid pink; /* Pink outline to match theme */
+    margin: 0 15px; /* Adjusted margin for spacing between rectangles */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center elements vertically */
+    align-items: center; /* Center elements horizontally */
+    opacity: 1; /* Set opacity to full for better visibility */
+}
+
+.tiktok-image {
+    width: 100%; /* Adjust the width to fit the container */
+    max-width: 130px; /* Limit the maximum width to make the image smaller */
+    display: block;
+    margin: 10px auto;
+}
+
+.connect-button {
+    display: block;
+    width: 60%; /* Adjusted width to make the button smaller */
+    padding: 8px 0; /* Smaller padding to fit the container */
+    margin: 10px auto; /* Adjusted margin for better fit and alignment */
+    background-color: #12c2e9; /* Bright blue color for the button */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners for aesthetic appeal */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.connect-button:hover {
+    background-color: #96d1ff; /* Lighter blue on hover for visual feedback */
+    transform: scale(1.05); /* Slight scale up on hover */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start from invisible */
+    }
+    to {
+        opacity: 1; /* Fade in to fully visible */
+    }
+}
